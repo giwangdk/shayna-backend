@@ -26,7 +26,6 @@
                                     <td>{{$item->product->name}}</td>
                                     <td><img src="{{url($item->photo)}}" alt=""></td>
                                     <td>{{$item->is_default ? 'Ya' : 'Tidak'}}</td>
-                                    <td>{{$item->description}}</td>
                                     <td>
                                         <form action="{{route('products-galleries.destroy', $item->id)}}" class="inline" method="POST">
                                         @csrf

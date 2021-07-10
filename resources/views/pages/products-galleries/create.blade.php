@@ -42,7 +42,7 @@
                 @enderror
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">
-                    Tambah Barang
+                    Tambah Foto Barang
                 </button>
             </form>
         </div>

@@ -35,7 +35,11 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+
+        return view('pages.products-galleries.create')->with([
+            'products' => $products
+        ]);
     }
 
     /**
@@ -46,7 +50,14 @@ class ProductGalleryController extends Controller
      */
     public function store(ProductGalleryRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['photo'] = $request->file('photo')->store(
+            'assets/product',
+            'public'
+        );
+
+        ProductGallery::create($data);
+        return redirect()->route('products-galleries.index');
     }
 
     /**
@@ -91,6 +102,9 @@ class ProductGalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = ProductGallery::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('products-galleries.index');
     }
 }
