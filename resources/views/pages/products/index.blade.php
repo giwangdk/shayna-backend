@@ -32,8 +32,7 @@
                                     <td>{{$item->quantity}}</td>
                                     <td>
                                         
-                                        <a href="#" class="btn btn-info btn-sm"><i class="fa fa-picture-o"></i></a>
-                                        {{-- <a href="{{route('products.gallery')}}" class="btn btn-info btn-sm"><i class="fa fa-picture-o"></i></a> --}}
+                                        <a href="{{route('products.gallery', $item->id)}}" class="btn btn-info btn-sm"><i class="fa fa-picture-o"></i></a>
                                         <a href="{{route('products.edit', $item->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
                                         <form action="{{route('products.destroy', $item->id)}}" method="POST" class="d-inline">
                                             @csrf
