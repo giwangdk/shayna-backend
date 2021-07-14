@@ -71,7 +71,11 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Transaction::findOrFail($id);
+
+        return view('pages.transactions.edit')->with([
+            'item' => $item
+        ]);
     }
 
     /**
@@ -83,7 +87,12 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $data = $request->all();
+
+        $item = Transaction::findorFail($id);
+        $item->update($data);
+        return redirect()->route('transactions.index');
     }
 
     /**
@@ -95,5 +104,19 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:PENDING, SUCCESS, FAILED'
+        ]);
+
+        $item = Transaction::findOrFail($id);
+        $item->transaction_status = $request->status;
+
+        $item->save();
+
+        return redirect()->route('transactions.index');
     }
 }

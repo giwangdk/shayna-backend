@@ -47,15 +47,16 @@
         </td>
     </tr>
 </table>
-{{-- <div class="row">
+<div class="row">
     <div class="col-4">
-        <a href="{{route('transactions.status', $item->id)}}?status==SUCCESS" class="btn btn-succes btn-block">
-        <i class="fa fa-check"></i>Set Sukses</a>
-        
-        <a href="{{route('transactions.status', $item->id)}}?status==FAILED" class="btn btn-succes btn-warning">
-            <i class="fa fa-check"></i>Set Gagal</a>
-            
-        <a href="{{route('transactions.status', $item->id)}}?status==PENDING" class="btn btn-succes btn-info">
-            <i class="fa fa-check"></i>Set Pending</a>
+        <a href="{{route('transactions.status', $item->id)}}?status=SUCCESS" class="btn btn-succes btn-block">
+        <i class="fa fa-check"></i>Set Sukses</a>a>
     </div>
-</div> --}}
+    <div class="col-4"><a href="{{route('transactions.status', $item->id)}}?status=FAILED" class="btn btn-succes btn-warning">
+        <i class="fa fa-check"></i>Set Gagal</a>
+    </div>
+        <div class="col-4">
+        <a href="{{route('transactions.status', $item->id)}}?status=PENDING" class="btn btn-succes btn-info">
+            <i class="fa fa-check"></i>Set Pending</a>
+        </div>
+</div>
