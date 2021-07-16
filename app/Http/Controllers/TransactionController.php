@@ -103,7 +103,10 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Transaction::findorFail($id);
+        $item->delete();
+
+        return redirect()->route('transactions.index');
     }
 
     public function setStatus(Request $request, $id)
@@ -116,7 +119,6 @@ class TransactionController extends Controller
         $item->transaction_status = $request->status;
 
         $item->save();
-
         return redirect()->route('transactions.index');
     }
 }

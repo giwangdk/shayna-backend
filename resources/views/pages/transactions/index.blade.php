@@ -14,6 +14,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
+                                    <th>Email</th>
                                     <th>Nomor</th>
                                     <th>Total Transaksi</th>
                                     <th>Status</th>
@@ -25,21 +26,23 @@
                                 <tr>
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->name}}</td>
+                                    <td>{{$item->email}}</td>
                                     <td>{{$item->number}}</td>
                                     <td>${{$item->transaction_total}}</td>
                                     <td>
                                         @if ($item->transaction_status == 'PENDING')
-                                        <span class="badge badge-info">
+                                        <span class="badge badge-info ">
                                         @elseif(($item->transaction_status == 'SUCCESS'))
                                         <span class="badge badge-success">
                                         @elseif(($item->transaction_status == 'FAILED'))
                                         <span class="badge badge-danger">
                                         @else
+                                        <span>
                                         @endif
                                         {{$item->transaction_status}}
                                     </span>
                                     </td>
-                                    <td>
+                                    <td class="d-flex justify-content-between">
                                         @if ($item->transaction_status == 'PENDING')
                                             <a href="{{route('transactions.status', $item->id)}}?status=SUCCESS" class="btn btn-success btn-sm">
                                                 <i class="fa fa-check"></i>
