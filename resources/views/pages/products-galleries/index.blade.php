@@ -13,11 +13,9 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama </th>
-                                    <th>Email</th>
-                                    <th>Nomor</th>
-                                    <th>Total Transaksi</th>
-                                    <th>Status</th>
+                                    <th>Nama Barang</th>
+                                    <th>Photo</th>
+                                    <th>Default</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -25,48 +23,25 @@
                                 @forelse ($items as $item)
                                 <tr>
                                     <td>{{$item->id}}</td>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->email}}</td>
-                                    <td>{{$item->number}}</td>
-                                    <td>${{$item->transaction_total}}</td>
+                                    <td>{{$item->product->name}}</td>
+                                    <td><img src="{{url($item->photo)}}" alt=""></td>
+                                    <td>{{$item->is_default ? 'Ya' : 'Tidak'}}</td>
                                     <td>
-                                        @if ($item->transaction_status == 'PENDING')
-                                            <span class="badge badge-info">
-                                        @elseif($item->transaction_status == 'SUCCESS')
-                                            <span class="badge badge-success">
-                                        @elseif($item->transaction_status == 'FAILED')
-                                            <span class="badge badge-danger">
-                                        @endif
-                                        {{$item->transaction_status}}
-                                            </span>
+                                        <form action="{{route('products-galleries.destroy', $item->id)}}" class="inline" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm">
+    
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
-                                    <td>
-                                        {{-- @if ($item->transaction_status == 'PENDING')
-                                            <a href="{{route('trasactions.status', $item->id)}} ? status == SUCCESS" class="btn btn-success btn-sm">
-                                                <i class="fa fa-check"></i>
-                                            </a>
-                                            <a href="{{route('trasactions.status', $item->id)}} ? status == FAILED" class="btn btn-warning btn-sm">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        @endif --}}
-                                        <a href="{{route('transactions.edit', $item->id)}}" class="btn- btn-primary">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <form action="{{route('transactions.destroy', $item->id)}}" class="inline" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-sm">
-                                            
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
-                                    </td>
-                                    
+    
                                 </tr>
                                 @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center p-5">Data tidak tersedia</td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="7" class="text-center p-5">Data tidak tersedia</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
